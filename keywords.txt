@@ -1,0 +1,3 @@
+HM55B_Compass	KEYWORD1
+initialize	KEYWORD2
+read	KEYWORD2
