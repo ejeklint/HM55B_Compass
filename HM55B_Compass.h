@@ -16,6 +16,8 @@
 
 class HM55B_Compass {
 public:
+    static const int NO_VALUE = 0xFFFF;
+    
     HM55B_Compass(unsigned clockPin, unsigned enablePin, unsigned dataIOPin);
     
     void initialize();
