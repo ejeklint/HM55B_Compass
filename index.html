@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>HM55B Compass by ejeklint</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>HM55B Compass</h1>
+        <p>An easy to use Arduino class for the HM55B digital compass module</p>
+        <p class="view"><a href="https://github.com/ejeklint/HM55B_Compass">View the Project on GitHub <small>ejeklint/HM55B_Compass</small></a></p>
+        <ul>
+          <li><a href="https://github.com/ejeklint/HM55B_Compass/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ejeklint/HM55B_Compass/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ejeklint/HM55B_Compass">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><img src="http://dl.dropbox.com/u/57667211/compass.png" width="110" height="110" align="left"></p>
+
+<h3>It's all about directions</h3>
+
+<p>HM55B_Compass is an Arduino library that makes access to the digital compass module from Parallax super simple. There is another solution in the Arduino Playground which has great information on how to connect the module, but it's makes your code more cluttered. This library should run a tiny little bit faster and waste a few precious bytes less.</p>
+
+<p>After installing the library (see <a href="http://arduino.cc/en/Reference/Libraries">here</a> on how to install contributed libraries), use it as simple as this:</p>
+
+<div class="highlight">
+<pre><span class="cp">#include &lt;HM55B_Compass.h&gt;</span>
+
+<span class="c1">// Create an instance of compass.</span>
+<span class="c1">// Clock on pin 8, Enable on pin 9, dataIO on pin 10.</span>
+<span class="n">HM55B_Compass</span> <span class="n">compass</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">57600</span><span class="p">);</span>
+  <span class="c1">// Initialize the module before first use.</span>
+  <span class="n">compass</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Read uncalibrated compass value. This takes ~45 ms.</span>
+  <span class="c1">// Gives angle +/- 180° from north. Negative values to east,</span>
+  <span class="c1">// positive to west.</span>
+  <span class="kt">int</span> <span class="n">angle</span> <span class="o">=</span> <span class="n">compass</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+  <span class="c1">// NO_VALUE will be returned if the measuring failed.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">angle</span> <span class="o">==</span> <span class="n">HM55B_Compass</span><span class="o">::</span><span class="n">NO_VALUE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Uh-oh"</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">angle</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>Next version, if there will be one, will support calibration. This is needed in appliances that contain disturbances in the magnetic field.</p>
+
+<p><em>Enjoy!</em></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ejeklint">ejeklint</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-3389877-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
