@@ -1,4 +1,9 @@
-#include <WProgram.h>
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
+
 #include <HM55B_Compass.h>
 
 HM55B_Compass::HM55B_Compass(unsigned clockPin, unsigned enablePin, unsigned dataIOPin) {
